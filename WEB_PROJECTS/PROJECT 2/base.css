@@ -1,0 +1,337 @@
+/* ==========================================================================
+   Al-Kwait Jewellers — base.css
+   Reset, design tokens, typography primitives
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Design tokens ---------- */
+:root {
+  /* Fluid type scale */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.2vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+  --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+  --text-3xl: clamp(2.5rem, 1rem + 4vw, 4.75rem);
+  --text-hero: clamp(2.75rem, 0.6rem + 6.6vw, 7.5rem);
+
+  /* 4px spacing system */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* Content widths */
+  --content-narrow: 640px;
+  --content-default: 1020px;
+  --content-wide: 1320px;
+
+  /* Radii — elegant, not bubbly */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 14px;
+  --radius-full: 9999px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-interactive: 220ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Typography families */
+  --font-display: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
+  --font-body: 'Switzer', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Header height */
+  --header-h: 78px;
+}
+
+/* ---------- Light theme (default) — creamy ivory & champagne ---------- */
+:root,
+[data-theme='light'] {
+  --color-bg: #fbf7f0;
+  --color-bg-2: #f7f0e5;
+  --color-surface: #fffcf7;
+  --color-surface-2: #f7f1e7;
+  --color-surface-offset: #f1e9db;
+  --color-surface-deep: #ebe0cd;
+
+  --color-border: #e4d9c6;
+  --color-border-strong: #d5c6ab;
+  --color-divider: #eee5d6;
+
+  --color-text: #211e19;
+  --color-text-soft: #4a433a;
+  --color-text-muted: #6d6459;
+  --color-text-faint: #a39785;
+  --color-text-inverse: #fbf7f0;
+
+  --color-gold: #b08a4a;
+  --color-gold-deep: #8a6931;
+  --color-gold-soft: #dcc79a;
+  --color-gold-tint: #f3e8d0;
+
+  --color-ink: #241f18; /* dark blocks on light theme */
+  --color-ink-text: #f6efe2;
+
+  --shadow-xs: 0 1px 2px rgba(58, 44, 20, 0.05);
+  --shadow-sm: 0 2px 8px rgba(58, 44, 20, 0.06);
+  --shadow-md: 0 10px 30px rgba(58, 44, 20, 0.09);
+  --shadow-lg: 0 26px 70px rgba(58, 44, 20, 0.14);
+  --shadow-gold: 0 18px 60px rgba(176, 138, 74, 0.18);
+
+  --glass-bg: rgba(255, 252, 247, 0.72);
+  --glass-border: rgba(176, 138, 74, 0.22);
+  --grain-opacity: 0.035;
+  --light-bloom: rgba(255, 236, 199, 0.75);
+}
+
+/* ---------- Dark theme — espresso & champagne ---------- */
+[data-theme='dark'] {
+  --color-bg: #14110c;
+  --color-bg-2: #191510;
+  --color-surface: #1c1811;
+  --color-surface-2: #221d15;
+  --color-surface-offset: #272016;
+  --color-surface-deep: #2e261a;
+
+  --color-border: #3a3123;
+  --color-border-strong: #4d4130;
+  --color-divider: #2b2418;
+
+  --color-text: #efe8dc;
+  --color-text-soft: #d6cec0;
+  --color-text-muted: #a3988a;
+  --color-text-faint: #7a7062;
+  --color-text-inverse: #17130d;
+
+  --color-gold: #d9bd85;
+  --color-gold-deep: #e6cfa4;
+  --color-gold-soft: #8d7345;
+  --color-gold-tint: #2b2317;
+
+  --color-ink: #f3ead8;
+  --color-ink-text: #1b1710;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 12px 34px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 28px 70px rgba(0, 0, 0, 0.6);
+  --shadow-gold: 0 18px 60px rgba(217, 189, 133, 0.14);
+
+  --glass-bg: rgba(28, 24, 17, 0.72);
+  --glass-border: rgba(217, 189, 133, 0.2);
+  --grain-opacity: 0.05;
+  --light-bloom: rgba(217, 189, 133, 0.22);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-bg: #14110c;
+    --color-bg-2: #191510;
+    --color-surface: #1c1811;
+    --color-surface-2: #221d15;
+    --color-surface-offset: #272016;
+    --color-surface-deep: #2e261a;
+    --color-border: #3a3123;
+    --color-border-strong: #4d4130;
+    --color-divider: #2b2418;
+    --color-text: #efe8dc;
+    --color-text-soft: #d6cec0;
+    --color-text-muted: #a3988a;
+    --color-text-faint: #7a7062;
+    --color-text-inverse: #17130d;
+    --color-gold: #d9bd85;
+    --color-gold-deep: #e6cfa4;
+    --color-gold-soft: #8d7345;
+    --color-gold-tint: #2b2317;
+    --color-ink: #f3ead8;
+    --color-ink-text: #1b1710;
+    --glass-bg: rgba(28, 24, 17, 0.72);
+    --glass-border: rgba(217, 189, 133, 0.2);
+    --light-bloom: rgba(217, 189, 133, 0.22);
+  }
+}
+
+/* ---------- Document ---------- */
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + var(--space-4));
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  overflow-x: hidden;
+  transition:
+    background-color 600ms var(--ease-out),
+    color 400ms var(--ease-out);
+}
+
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color var(--transition-interactive),
+    opacity var(--transition-interactive);
+}
+
+/* ---------- Headings ---------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: var(--text-2xl);
+}
+h2 {
+  font-size: var(--text-xl);
+}
+h3 {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+h4 {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* ---------- Focus ---------- */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--color-gold-tint);
+  color: var(--color-text);
+}
+
+/* ---------- Scrollbar ---------- */
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg-2);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 99px;
+    border: 3px solid var(--color-bg-2);
+  }
+}
+
+/* ---------- Utility ---------- */
+.u-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  z-index: 200;
+  padding: var(--space-3) var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-gold);
+  font-size: var(--text-sm);
+  transition: top 200ms var(--ease-out);
+}
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
